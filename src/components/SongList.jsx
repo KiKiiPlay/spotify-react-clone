@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import SingleSong from "./SingleSong";
+import { useSelector } from "react-redux";
 
 const SongList = () => {
   const [songs, setSongs] = useState([]);
+  const group = useSelector((state) => state.searchQuerry.searchedSong);
 
   useEffect(() => {
     fetchSongs();
@@ -11,12 +13,13 @@ const SongList = () => {
   const fetchSongs = async () => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica"
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${group}`
       );
       if (response.ok) {
         let data = await response.json();
         setSongs(data);
         console.log(data);
+        console.log(group);
       } else {
         console.log("Some error from server");
       }

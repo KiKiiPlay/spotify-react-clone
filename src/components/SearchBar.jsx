@@ -1,8 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Col, Row, Form, InputGroup, Button } from "react-bootstrap";
 import logo from "./Spotify_Logo_CMYK_Green.png";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+
   return (
     <>
       <Container className="mt-3">
@@ -15,12 +20,20 @@ const SearchBar = () => {
               <Form.Control
                 aria-label="Large"
                 aria-describedby="inputGroup-sizing-sm"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </InputGroup>
             <Button
               className="mx-3"
               variant="success"
               style={{ height: "48px" }}
+              onClick={() => {
+                dispatch({
+                  type: "SEARCH_SONG",
+                  payload: search,
+                });
+              }}
             >
               Search
             </Button>
