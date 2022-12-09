@@ -16,7 +16,7 @@ const SongList = () => {
       if (response.ok) {
         let data = await response.json();
         setSongs(data);
-        console.log(songs);
+        console.log(data);
       } else {
         console.log("Some error from server");
       }
@@ -26,11 +26,12 @@ const SongList = () => {
   };
 
   return (
-    <>
-      {songs.data.map((element) => (
-        <SingleSong songs={element} key={element.id} />
-      ))}
-    </>
+    <div className="d-flex flex-wrap justify-content-center">
+      {songs.data &&
+        songs.data
+          .filter((n) => n.title.toLowerCase().includes(songs))
+          .map((element) => <SingleSong songs={element} key={element.id} />)}
+    </div>
   );
 };
 
