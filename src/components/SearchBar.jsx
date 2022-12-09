@@ -3,10 +3,12 @@ import { Container, Col, Row, Form, InputGroup, Button } from "react-bootstrap";
 import logo from "./Spotify_Logo_CMYK_Green.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -37,6 +39,9 @@ const SearchBar = () => {
             >
               Search
             </Button>
+          </Col>
+          <Col>
+            <Button onClick={() => navigate("/liked")}>Favoutite</Button>
           </Col>
         </Row>
       </Container>

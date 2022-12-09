@@ -8,7 +8,7 @@ const SongList = () => {
 
   useEffect(() => {
     fetchSongs();
-  }, []);
+  }, [group]);
 
   const fetchSongs = async () => {
     try {
@@ -19,7 +19,6 @@ const SongList = () => {
         let data = await response.json();
         setSongs(data);
         console.log(data);
-        console.log(group);
       } else {
         console.log("Some error from server");
       }
