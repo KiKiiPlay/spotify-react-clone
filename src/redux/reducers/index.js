@@ -9,7 +9,7 @@ const mainReducer = (state = initialState, action) => {
     case "SEARCH_SONG":
       return {
         searchQuerry: {
-          searchedSong: [action.payload],
+          searchedSong: action.payload,
         },
       };
 
