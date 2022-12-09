@@ -11,7 +11,7 @@ const SongList = () => {
   const fetchSongs = async () => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/deezer/search?q=queen"
+        "https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica"
       );
       if (response.ok) {
         let data = await response.json();
@@ -28,9 +28,9 @@ const SongList = () => {
   return (
     <div className="d-flex flex-wrap justify-content-center">
       {songs.data &&
-        songs.data
-          .filter((n) => n.title.toLowerCase().includes(songs))
-          .map((element) => <SingleSong songs={element} key={element.id} />)}
+        songs.data.map((element) => (
+          <SingleSong songs={element} key={element.id} />
+        ))}
     </div>
   );
 };
